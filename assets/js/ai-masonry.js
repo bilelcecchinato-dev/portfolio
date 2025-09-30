@@ -2,6 +2,8 @@
   const galleries = document.querySelectorAll('.ai-gallery, .web-gallery');
   if (!galleries.length) return;
 
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+
   const getNumericValue = (value, fallback) => {
     const parsed = parseFloat(value);
     return Number.isFinite(parsed) ? parsed : fallback;
@@ -20,9 +22,14 @@
       const styles = window.getComputedStyle(gallery);
       const rowSize = getNumericValue(styles.getPropertyValue('grid-auto-rows'), 5);
       const gap = getNumericValue(styles.getPropertyValue('row-gap'), 5);
+      const stackCards = mobileQuery.matches;
 
       cards.forEach(card => {
-        card.style.gridRowEnd = `span ${computeSpan(card, rowSize, gap)}`;
+        if (stackCards) {
+          card.style.removeProperty('grid-row-end');
+        } else {
+          card.style.gridRowEnd = `span ${computeSpan(card, rowSize, gap)}`;
+        }
       });
     };
 
@@ -38,6 +45,11 @@
     })();
 
     window.addEventListener('resize', scheduleRecalc, { passive: true });
+    if (typeof mobileQuery.addEventListener === 'function') {
+      mobileQuery.addEventListener('change', scheduleRecalc);
+    } else if (typeof mobileQuery.addListener === 'function') {
+      mobileQuery.addListener(scheduleRecalc);
+    }
 
     cards.forEach(card => {
       const img = card.querySelector('img');

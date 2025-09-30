@@ -47,8 +47,8 @@ body.ai-page {
 
 /* --- NAVBAR --- */
 .navbar {
-  display: flex;                  /* usa flexbox per gestire logo e menu */
-  justify-content: space-between; /* logo a sx, menu a dx */
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   background-color: $bg-dark;
@@ -56,34 +56,164 @@ body.ai-page {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba($text-light, 0.18);
+
+  .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      color: $text-light;
+      background-color: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+      &:hover,
+      &:focus-visible,
+      &.active {
+        background-color: $text-light;
+        color: $bg-dark;
+        border-color: $text-light;
+      }
+    }
+  }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem;
+    border: none;
+    background: none;
+    color: $text-light;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: lighten($text-light, 15%);
+    }
+  }
+
+  .menu-toggle__bar {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 2px;
+    border-radius: 999px;
+    background-color: currentColor;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background-color: currentColor;
+      transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    }
+
+    &::before {
+      transform: translateY(-6px);
+    }
+
+    &::after {
+      transform: translateY(6px);
+    }
+  }
+
+  .menu-toggle--open {
+    color: lighten($text-light, 15%);
+
+    .menu-toggle__bar {
+      background-color: transparent;
+
+      &::before {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      &::after {
+        transform: translateY(0) rotate(-45deg);
+      }
+    }
+  }
 }
 
-/* --- NAVBAR MENU LINKS (Resume + LinkedIn) --- */
-.navbar .menu a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  text-decoration: none;
-  color: $text-light;             /* testo chiaro base */
-  background-color: transparent;  /* nessuno sfondo base */
-  border: 1px solid transparent;  
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.navbar .menu a:hover,
-.navbar .menu a:focus-visible,
-.navbar .menu a.active {
-  background-color: $text-light;  /* sfondo PLATINUM */
-  color: $bg-dark;                /* testo nero */
-  border-color: $text-light;      /* bordo chiaro */
-}
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: flex-start;
+    padding: 0.75rem 1.5rem;
 
-/* --- LOGO NAVBAR --- */
-.navbar .logo img {
-  height: 40px;   
-  width: auto;    
-  display: block; 
+    .menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: rgba($bg-dark, 0.98);
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem 1.25rem;
+      border-bottom: 1px solid rgba($text-light, 0.12);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+
+      a {
+        width: 100%;
+        text-align: center;
+      }
+
+      &.menu--open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      position: static;
+      margin-left: auto;
+      transform: none;
+    }
+
+    .logo {
+      margin: 0;
+    }
+  }
+
 }
 
 /* WORK PREVIEW STRIP */
@@ -120,16 +250,25 @@ body.ai-page {
       object-fit: cover;
       filter: saturate(0.85);
       transition: transform 0.4s ease, filter 0.4s ease;
-
-      &:hover {
-        transform: scale(1.04);
-        filter: saturate(1);
-      }
     }
   }
 
-  &:hover .preview-group {
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-preview:hover .preview-group {
     animation-play-state: paused;
+  }
+
+  .work-preview .preview-group img:hover {
+    transform: scale(1.04);
+    filter: saturate(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .work-preview .preview-group img {
+    pointer-events: none;
   }
 }
 
@@ -372,6 +511,188 @@ body.ai-page {
   background: $text-light;
 }
 
+.resume-projects {
+  width: 100%;
+  align-self: stretch;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Inter, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resume-projects__title {
+  font-size: 1.6rem;
+  margin: 0 0 0.75rem;
+}
+
+.resume-projects__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+.resume-projects__card {
+  border: 1px solid rgba($text-light, 0.35);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba($text-light, 0.05);
+}
+
+.resume-projects__card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.resume-projects__card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+
+.resume-projects__card-meta {
+  margin: 0.25rem 0 0;
+  color: rgba($text-light, 0.65);
+  font-size: 0.9rem;
+}
+
+.resume-projects__tags {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.resume-projects__tag {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba($text-light, 0.45);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.resume-projects__label {
+  margin: 12px 0 0;
+}
+
+.resume-projects__list {
+  margin: 0 0 12px 18px;
+  padding: 0;
+  list-style: disc;
+  line-height: 1.5;
+}
+
+.resume-projects__text {
+  margin: 0 0 10px;
+}
+
+.resume-projects__link {
+  color: $text-light;
+  text-decoration: underline;
+  align-self: flex-start;
+}
+
+@media (min-width: 920px) {
+  .resume-projects__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .resume-main {
+    padding: 2rem 1.75rem;
+  }
+
+  .resume-projects__card {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .resume-main {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .resume-projects__card {
+    padding: 12px;
+  }
+
+  .resume-projects__title {
+    font-size: 1.45rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+.resume-skills {
+  width: 100%;
+  align-self: stretch;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Inter, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.resume-skills__title {
+  font-size: 1.6rem;
+  margin: 0 0 0.75rem;
+}
+
+.resume-skills__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.resume-skills__card {
+  border: 1px solid rgba($text-light, 0.35);
+  border-radius: 12px;
+  padding: 16px;
+  background: rgba($text-light, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resume-skills__card h3 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.resume-skills__card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  line-height: 1.45;
+}
+
+.resume-skills__card li {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 720px) {
+  .resume-skills__card {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .resume-skills__card {
+    padding: 12px;
+  }
+
+  .resume-skills__title {
+    font-size: 1.45rem;
+  }
+}
+
 @media (max-width: 960px) {
   .resume {
     grid-template-columns: 1fr;
@@ -407,6 +728,8 @@ body.ai-page {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 5px;
+  row-gap: 5px;
+  column-gap: 5px;
   align-content: start;
   grid-auto-rows: 5px;
   grid-auto-flow: dense;
@@ -455,7 +778,7 @@ body.ai-page {
 
 .web-card {
   aspect-ratio: var(--card-ratio, 16 / 9);
-  margin-top: 0;
+  margin: 0;
 }
 
 .web-card__media {
@@ -488,6 +811,20 @@ body.ai-page {
   margin-top: 40px;
 }
 
+@media (max-width: 768px) {
+  .ai-gallery,
+  .web-gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    row-gap: 5px;
+    column-gap: 5px;
+  }
+
+  .web-card:nth-child(2n) {
+    margin-top: 0;
+  }
+}
+
 .ai-card__caption,
 .web-card__caption {
   position: absolute;
@@ -515,10 +852,17 @@ body.ai-page {
   color: lighten($text-light, 10%);
 }
 
-.ai-card:hover .ai-card__caption,
+@media (hover: hover) and (pointer: fine) {
+  .ai-card:hover .ai-card__caption,
+  .web-card:hover .web-card__caption {
+    opacity: 1;
+  }
+}
+
 .ai-card:focus-within .ai-card__caption,
-.web-card:hover .web-card__caption,
-.web-card:focus-within .web-card__caption {
+.ai-card.ai-card--active .ai-card__caption,
+.web-card:focus-within .web-card__caption,
+.web-card.web-card--active .web-card__caption {
   opacity: 1;
 }
 

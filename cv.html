@@ -6,9 +6,7 @@
   <title>Portfolio - CV</title>
   <link
     rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous">
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" type="image/png" href="assets/css/img/logo-personale.png"> 
 </head>
@@ -18,7 +16,11 @@
     <a class="logo" href="index.html">
       <img src="assets/css/img/logo-personale.png" alt="Stylized white crown with three dots above arches representing people, centered on a black background, conveying a sense of community and professionalism">
     </a>
-    <nav class="menu">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Apri il menu di navigazione">
+      <span class="sr-only menu-toggle__label">Apri il menu di navigazione</span>
+      <span class="menu-toggle__bar" aria-hidden="true"></span>
+    </button>
+    <nav class="menu" id="primary-navigation">
       <a href="cv.html" class="active">Resume</a>
       <a href="https://www.linkedin.com/in/belal-menzak-15a072248/" target="_blank" rel="noopener">Linkedin</a>
       <a href="contattami.html">Contattami</a>
@@ -73,107 +75,106 @@
         <p>Diploma professionale con specializzazione in grafica, comunicazione e tecnologie della stampa.</p>
       </section>
 
-      <section id="projects" style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;max-width:920px;margin:auto;padding:24px;">
-  <h2 style="font-size:1.6rem;margin:0 0 12px;">Progetti selezionati</h2>
-  <div style="display:grid;grid-template-columns:1fr;gap:16px;">    
+      <section id="projects" class="resume-projects">
+        <h2 class="resume-projects__title">Progetti selezionati</h2>
+        <div class="resume-projects__grid">
+          <article class="resume-projects__card">
+            <header class="resume-projects__card-header">
+              <div>
+                <h3 class="resume-projects__card-title">User Interface of jojob</h3>
+                <p class="resume-projects__card-meta">Ruolo: UI designer • Anno: 2025</p>
+              </div>
+              <div class="resume-projects__tags" aria-label="Strumenti utilizzati">
+                <span class="resume-projects__tag">Ai</span>
+                <span class="resume-projects__tag">Ps</span>
+                <span class="resume-projects__tag">Figma</span>
+              </div>
+            </header>
+            <p class="resume-projects__label"><strong>Brief:</strong></p>
+            <ul class="resume-projects__list">
+              <li>Discovery: analisi utenti, benchmark e raccolta feedback.</li>
+              <li>Redesign: wireframe, mockup e gerarchia visiva ottimizzata.</li>
+              <li>Accessibilità: contrasti, leggibilità e layout responsive.</li>
+            </ul>
+            <p class="resume-projects__text"><strong>Outcome:</strong> Il redesign di Jojob ha reso la navigazione più chiara e intuitiva, migliorando la leggibilità dei contenuti e aumentando l’accessibilità per diversi tipi di utenti.</p>
+            <a class="resume-projects__link" href="web-design.html">Vedi il progetto</a>
+          </article>
 
-    
-    <!-- CARD PROGETTO -->
-    <article style="border:1px solid #d9d9d9;border-radius:12px;padding:16px;">
-      <header style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;">
-        <div>
-          <h3 style="margin:0;font-size:1.1rem;">User Interface of jojob</h3>
-          <p style="margin:4px 0 0;color: #d9d9d9;">Ruolo: UI designer • Anno: 2025</p>
+          <article class="resume-projects__card">
+            <header class="resume-projects__card-header">
+              <div>
+                <h3 class="resume-projects__card-title">Rebrand "MeditActive" - Social Media</h3>
+                <p class="resume-projects__card-meta">Ruolo: Brand Designer • Anno: 2025</p>
+              </div>
+              <div class="resume-projects__tags" aria-label="Strumenti utilizzati">
+                <span class="resume-projects__tag">Figma</span>
+                <span class="resume-projects__tag">Photoshop</span>
+                <span class="resume-projects__tag">Ai</span>
+              </div>
+            </header>
+            <p class="resume-projects__label"><strong>Brief:</strong> Riprogettare il brand "MeditActive" per i social media.</p>
+            <ul class="resume-projects__list">
+              <li>Logo design e brand identity.</li>
+              <li>Creazione di linee guida per il marchio.</li>
+              <li>Preparazione post per i social media.</li>
+            </ul>
+            <p class="resume-projects__text"><strong>Outcome:</strong> tempo medio di lettura sezione hero −20% (scroll più rapido), +18% CTR sul bottone primario.</p>
+            <a class="resume-projects__link" href="Brand-design.html">Vedi progetto</a>
+          </article>
         </div>
-        <div style="display:flex;gap:6px;align-items:center;">
-          <span style="padding:.25rem .5rem;border:1px solid #d9d9d9;border-radius:999px;font-size:.85rem;">Ai</span>
-          <span style="padding:.25rem .5rem;border:1px solid #d9d9d9;border-radius:999px;font-size:.85rem;">Ps</span>
-          <span style="padding:.25rem .5rem;border:1px solid #d9d9d9;border-radius:999px;font-size:.85rem;">Figma</span>
-        </div>
-      </header>
-      <p style="margin:12px 0 8px;"><strong>Brief:</strong> </p>
-      <ul style="margin:0 0 12px 18px;line-height:1.5;">
-        <li>Discovery: analisi utenti, benchmark e raccolta feedback.</li>
-        <li>Redesign: wireframe, mockup e gerarchia visiva ottimizzata.</li>
-        <li>Accessibilità: contrasti, leggibilità e layout responsive.</li>
-      </ul>
-      <p style="margin:0 0 10px;"><strong>Outcome:</strong> Il redesign di Jojob ha reso la navigazione più chiara e intuitiva, migliorando la leggibilità dei contenuti e aumentando l’accessibilità per diversi tipi di utenti.</p>
-      <a href="web-design.html" style="text-decoration:underline;color: #d9d9d9;;">Vedi il progetto</a>
-    </article>
+      </section>
 
-    <!-- DUPLICA LE CARD CAMBIANDO DATI -->
-    <article style="border:1px solid #e6e6e6;border-radius:12px;padding:16px;">
-      <header style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;">
-        <div>
-          <h3 style="margin:0;font-size:1.1rem;">Rebrand "MeditActive" -  Social Media</h3>
-          <p style="margin:4px 0 0;color:#d9d9d9;">Ruolo: Brand Designer • Anno: 2025</p>
-        </div>
-        <div style="display:flex;gap:6px;align-items:center;">
-          <span style="padding:.25rem .5rem;border:1px solid #d9d9d9;border-radius:999px;font-size:.85rem;">Figma</span>
-          <span style="padding:.25rem .5rem;border:1px solid #d9d9d9;border-radius:999px;font-size:.85rem;">Photoshop</span>
-          <span style="padding:.25rem .5rem;border:1px solid #ddd;border-radius:999px;font-size:.85rem;">Ai</span>
-        </div>
-      </header>
-      <p style="margin:12px 0 8px;"><strong>Brief:</strong> Riprogettare il brand "MeditActive" per i social media.</p>
-      <ul style="margin:0 0 12px 18px;line-height:1.5;">
-        <li>Logo design e brand identity.</li>
-        <li>Creazione di linee guida per il marchio.</li>
-        <li>Preparazione post per i social media.</li>
-      </ul>
-      <p style="margin:0 0 10px;"><strong>Outcome:</strong> tempo medio di lettura sezione hero −20% (scroll più rapido), +18% CTR sul bottone primario.</p>
-      <a href="Brand-design.html" style="text-decoration:underline;color:#d9d9d9;">Vedi progetto</a>
-    </article>
-  </div>
-</section>
+      <section id="skills" class="resume-skills">
+        <h2 class="resume-skills__title">Competenze</h2>
+        <div class="resume-skills__grid">
+          <article class="resume-skills__card">
+            <h3>Brand & Visual Design</h3>
+            <ul>
+              <li>Sviluppo identità di marca</li>
+              <li>Progettazione materiali editoriali</li>
+              <li>Art direction per campagne digital e stampa</li>
+            </ul>
+          </article>
 
-<section id="skills" style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;max-width:920px;margin:auto;padding:0 24px 32px;">
-  <h2 style="font-size:1.6rem;margin:24px 0 12px;">Competenze</h2>
-  <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
-    <div style="border:1px solid #e6e6e6;border-radius:12px;padding:14px;">
-      <h3 style="margin:0 0 8px;font-size:1rem;">Core Design</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        <span class="chip">Tipografia</span><span class="chip">Layout & Griglie</span>
-        <span class="chip">Brand Identity</span><span class="chip">Gerarchia visiva</span>
-        <span class="chip">Comunicazione</span>
-      </div>
-    </div>
-    <div style="border:1px solid #e6e6e6;border-radius:12px;padding:14px;">
-      <h3 style="margin:0 0 8px;font-size:1rem;">Tool & Suite</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        <span class="chip">Illustrator</span><span class="chip">Photoshop</span>
-        <span class="chip">InDesign</span><span class="chip">Figma</span>
-        <span class="chip">Premiere</span>
-      </div>
-    </div>
-    <div style="border:1px solid #e6e6e6;border-radius:12px;padding:14px;">
-      <h3 style="margin:0 0 8px;font-size:1rem;">Web & UI</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        <span class="chip">Wireframing</span><span class="chip">Responsive</span>
-        <span class="chip">Design System</span><span class="chip">HTML/CSS (base)</span>
-        <span class="chip">Accessibilità (base)</span>
-      </div>
-    </div>
-    <div style="border:1px solid #e6e6e6;border-radius:12px;padding:14px;">
-      <h3 style="margin:0 0 8px;font-size:1rem;">AI per il Design</h3>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;">
-        <span class="chip">Prompting</span><span class="chip">Image Gen</span>
-        <span class="chip">Retouch AI</span><span class="chip">Upscale</span>
-        <span class="chip">Color Match</span>
-      </div>
-    </div>
-  </div>
-</section>
+          <article class="resume-skills__card">
+            <h3>Graphic Production</h3>
+            <ul>
+              <li>Adobe Illustrator • Photoshop • InDesign</li>
+              <li>Preparazione file per stampa offset/digitale</li>
+              <li>Impaginazione brochure e cataloghi</li>
+            </ul>
+          </article>
 
-<style>
-  .chip{padding:.3rem .6rem;border:1px solid #ddd;border-radius:999px;font-size:.85rem;display:inline-block}
-  @media (prefers-color-scheme:dark){
-    body{background:#0e0e0f;color:#e9e9ea}
-    .chip{border-color:#333}
-  }
-</style>
+          <article class="resume-skills__card">
+            <h3>Web & UI Design</h3>
+            <ul>
+              <li>Wireframe e prototipi in Figma</li>
+              <li>Design system e component library</li>
+              <li>Ottimizzazione responsive & accessibilità</li>
+            </ul>
+          </article>
+
+          <article class="resume-skills__card">
+            <h3>Workflow & Collaborazione</h3>
+            <ul>
+              <li>Gestione progetti in autonomia</li>
+              <li>Conduzione presentazioni con stakeholder</li>
+              <li>Coordinamento con copywriter e dev team</li>
+            </ul>
+          </article>
+
+          <article class="resume-skills__card">
+            <h3>AI & Innovazione</h3>
+            <ul>
+              <li>Prompt design per Midjourney & Firefly</li>
+              <li>Post-produzione creativa con strumenti AI</li>
+              <li>Creazione moodboard e varianti visual</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+  <script src="assets/js/nav-toggle.js"></script>
   <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HoA6Mz5d6sQ9uQmXNz9pR4aZ0Jm7VrIJXzzFB8dHs9U4JPTGOKg1ZdBBdBkYeALB"
-    crossorigin="anonymous"></script>
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
